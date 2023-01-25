@@ -24,6 +24,11 @@ set(APPLIB_SRCS
     SearchWidget.cpp
     SearchWidget.ui
 )
+if (APPLE)
+    list(APPEND APPLIB_SRCS
+        MacHomeEndExtension.cpp
+    )
+endif()
 
 qt5_add_resources(APPLIB_RESOURCES_SRCS app.qrc)
 
