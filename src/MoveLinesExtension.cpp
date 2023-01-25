@@ -10,12 +10,12 @@ MoveLinesExtension::MoveLinesExtension(TextEdit* textEdit)
         , mMoveUpAction(std::make_unique<QAction>())
         , mMoveDownAction(std::make_unique<QAction>()) {
     mMoveUpAction->setText(tr("Move selected lines up"));
-    mMoveUpAction->setShortcut(Qt::SHIFT | Qt::ALT | Qt::Key_Up);
+    mMoveUpAction->setShortcut(Qt::ALT | Qt::Key_Up);
     connect(mMoveUpAction.get(), &QAction::triggered, this, &MoveLinesExtension::moveUp);
     mTextEdit->addAction(mMoveUpAction.get());
 
     mMoveDownAction->setText(tr("Move selected lines down"));
-    mMoveDownAction->setShortcut(Qt::SHIFT | Qt::ALT | Qt::Key_Down);
+    mMoveDownAction->setShortcut(Qt::ALT | Qt::Key_Down);
     connect(mMoveDownAction.get(), &QAction::triggered, this, &MoveLinesExtension::moveDown);
     mTextEdit->addAction(mMoveDownAction.get());
 }
