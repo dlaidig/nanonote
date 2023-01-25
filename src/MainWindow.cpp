@@ -135,7 +135,7 @@ void MainWindow::setupActions() {
     addAction(mResetFontAction);
 
     mAlwaysOnTopAction->setText(tr("Always on Top"));
-    mAlwaysOnTopAction->setShortcut(Qt::CTRL + Qt::Key_T);
+    mAlwaysOnTopAction->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_T);
     connect(mAlwaysOnTopAction, &QAction::toggled, this, &MainWindow::setAlwaysOnTop);
     addAction(mAlwaysOnTopAction);
 

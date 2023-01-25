@@ -33,7 +33,7 @@ static void toggleTask(QTextCursor* cursor, int pos) {
 TaskExtension::TaskExtension(TextEdit* textEdit)
         : TextEditExtension(textEdit), mInsertTaskAction(std::make_unique<QAction>()) {
     mInsertTaskAction->setText(tr("Insert task"));
-    mInsertTaskAction->setShortcut(Qt::ALT | Qt::Key_T);
+    mInsertTaskAction->setShortcut(Qt::CTRL | Qt::Key_T);
     connect(mInsertTaskAction.get(), &QAction::triggered, this, &TaskExtension::insertTask);
     mTextEdit->addAction(mInsertTaskAction.get());
 }
