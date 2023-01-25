@@ -24,7 +24,7 @@ set(APPLIB_SRCS
     SearchWidget.ui
 )
 
-qt5_add_resources(APPLIB_RESOURCES_SRCS app.qrc)
+qt6_add_resources(APPLIB_RESOURCES_SRCS app.qrc)
 
 qpropgen(QPROPGEN_SRCS
     BaseSettings.yaml
@@ -51,8 +51,9 @@ target_include_directories(${APPLIB_NAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 target_link_libraries(${APPLIB_NAME}
-    Qt5::Core
-    Qt5::Widgets
+    Qt6::Core
+    Qt6::Widgets
+    Qt6::Core5Compat
 )
 
 # App executable

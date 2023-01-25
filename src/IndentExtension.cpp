@@ -7,7 +7,7 @@
 
 static const int INDENT_SIZE = 4;
 
-static int findBulletSize(const QStringRef& ref) {
+static int findBulletSize(const QString& ref) {
     static QSet<QString> bullets = {"- ", "* ", "> "};
     for (auto bullet : bullets) {
         if (ref.startsWith(bullet)) {
@@ -29,7 +29,7 @@ static PrefixInfo findCommonPrefix(const QString& line) {
             break;
         }
     }
-    int bulletSize = findBulletSize(line.midRef(idx));
+    int bulletSize = findBulletSize(line.mid(idx));
     PrefixInfo info;
     info.text = line.left(idx + bulletSize);
     info.isBullet = bulletSize > 0;
@@ -43,7 +43,7 @@ static void indentLine(QTextCursor& cursor) {
 
 static void unindentLine(QTextCursor& cursor) {
     const auto text = cursor.block().text();
-    for (int idx = 0; idx < std::min(INDENT_SIZE, text.size()) && text.at(idx) == ' '; ++idx) {
+    for (int idx = 0; idx < std::min((qsizetype) INDENT_SIZE, text.size()) && text.at(idx) == ' '; ++idx) {
         cursor.deleteChar();
     }
 }

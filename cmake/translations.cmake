@@ -20,7 +20,7 @@ function(ADD_TRANSLATIONS_BUILD_TARGET RES_SRCS_VARNAME)
     set(TS_FILES=${ARGN})
 
     # Add targets to build .ts files into .qm files
-    qt5_add_translation(QM_FILES ${TS_FILES})
+    qt6_add_translation(QM_FILES ${TS_FILES})
     add_custom_target(build_qm DEPENDS ${QM_FILES})
 
     set(TRANSLATIONS_QRC ${CMAKE_CURRENT_BINARY_DIR}/translations.qrc)
@@ -32,7 +32,7 @@ function(ADD_TRANSLATIONS_BUILD_TARGET RES_SRCS_VARNAME)
     # CMake rcc automation so that we can tell CMake it depends on the "build_qm"
     # target
     add_custom_command(OUTPUT ${RES_SRCS}
-        COMMAND Qt5::rcc -o ${RES_SRCS} --name translations ${TRANSLATIONS_QRC}
+        COMMAND Qt6::rcc -o ${RES_SRCS} --name translations ${TRANSLATIONS_QRC}
         DEPENDS build_qm
     )
 
@@ -69,7 +69,7 @@ function(ADD_LUPDATE_TARGET)
 
     # Add the lupdate target
     add_custom_target(lupdate
-        COMMAND Qt5::lupdate ${lupdate_options} "@${list_file}" -ts ${lupdate_TS_FILES}
+        COMMAND Qt6::lupdate ${lupdate_options} "@${list_file}" -ts ${lupdate_TS_FILES}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endfunction()
