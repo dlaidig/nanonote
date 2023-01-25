@@ -16,6 +16,9 @@
 
 #include "IndentExtension.h"
 #include "LinkExtension.h"
+#ifdef Q_OS_MACOS
+#include "MacHomeEndExtension.h"
+#endif
 #include "MoveLinesExtension.h"
 #include "SearchWidget.h"
 #include "Settings.h"
@@ -96,6 +99,9 @@ void MainWindow::setupTextEdit() {
 
     mTextEdit->addExtension(new MainWindowExtension(this));
     mTextEdit->addExtension(new MoveLinesExtension(mTextEdit));
+#ifdef Q_OS_MACOS
+    mTextEdit->addExtension(new MacHomeEndExtension(mTextEdit));
+#endif
 }
 
 void MainWindow::setupAutoSaveTimer() {
