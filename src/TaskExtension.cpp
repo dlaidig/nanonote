@@ -32,7 +32,7 @@ static void toggleTask(QTextCursor* cursor, int pos) {
 
 TaskExtension::TaskExtension(TextEdit* textEdit)
         : TextEditExtension(textEdit), mInsertTaskAction(std::make_unique<QAction>()) {
-    mInsertTaskAction->setText(tr("Insert task"));
+    mInsertTaskAction->setText(tr("Insert/toggle task"));
     mInsertTaskAction->setShortcut(Qt::CTRL | Qt::Key_T);
     connect(mInsertTaskAction.get(), &QAction::triggered, this, &TaskExtension::insertTask);
     mTextEdit->addAction(mInsertTaskAction.get());
@@ -81,7 +81,8 @@ void TaskExtension::insertTask() {
         // should not happen
         return;
     } else if (!match.captured(3).isEmpty() && !match.captured(4).isEmpty()) {
-        // line already contains a task, no action
+        // line already contains a task, toggle completion
+        toggleTask(&cursor, match.capturedStart(4) + 1);
         return;
     } else if (match.captured(2).isEmpty()) {
         // not in list
